@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistem Katalog & Admin Futuristik Premium</title>
-    
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
     <style>
@@ -296,7 +295,8 @@
     </div>
 
     <div class="banner-wrapper">
-        <div class="banner-track" id="banner-track"></div>
+        <div class="banner-track" id="banner-track">
+            </div>
     </div>
 
     <div class="container">
@@ -341,21 +341,426 @@
                                 <th style="text-align: center;">Aksi</th>
                             </tr>
                         </thead>
-                        <tbody id="admin-table-body"></tbody>
+                        <tbody id="admin-table-body">
+                            </tbody>
                     </table>
                 </div>
             </div>
         </main>
 
         <div id="preview-view" class="view-section">
+            
             <section id="page-home" class="nav-page">
                 <input type="text" id="search-bar" class="search-bar" placeholder="🔍 Cari nama layanan...">
-                <div class="product-grid" id="product-grid"></div>
+                <div class="product-grid" id="product-grid">
+                    </div>
             </section>
+
+            <section id="page-promo" class="nav-page" style="display: none;">
+                <div class="page-card">
+                    <h2 style="margin-bottom: 15px; font-weight: 800;">🎁 Pusat Promo & Diskon</h2>
+                    <p style="opacity: 0.8; margin-bottom: 20px;" id="promo-description-text"></p>
+                    <div style="padding: 15px; background: rgba(0,240,255,0.05); border: 1px dashed var(--primary-color); border-radius: 12px; font-weight: 700;">
+                        Gunakan Kode: <span style="color: var(--primary-color);">HYRANEW2026</span>
+                    </div>
+                </div>
+            </section>
+
+            <section id="page-topup" class="nav-page" style="display: none;">
+                <div class="page-card">
+                    <h2 style="margin-bottom: 15px; font-weight: 800;">⚡ Sistem Instant Top Up</h2>
+                    <p style="opacity: 0.8; line-height: 1.6;">Silakan pilih produk pada menu beranda, klik tombol <b>Lihat</b> untuk membaca detail spesifikasi layanan, lalu lakukan checkout pesanan Anda.</p>
+                </div>
+            </section>
+
+            <section id="page-history" class="nav-page" style="display: none;">
+                <div class="page-card">
+                    <h2 style="margin-bottom: 15px; font-weight: 800;">⏳ Riwayat Transaksi</h2>
+                    <p style="opacity: 0.6;">Belum ada riwayat pembelian terdeteksi pada perangkat ini.</p>
+                </div>
+            </section>
+
+            <section id="page-account" class="nav-page" style="display: none;">
+                <div class="page-card">
+                    <h2 style="margin-bottom: 10px; font-weight: 800;">👤 Akun Pengguna</h2>
+                    <p style="font-weight: 600; color: var(--primary-color); margin-bottom: 5px;">Client VIP Member</p>
+                    <p style="opacity: 0.5; font-size: 0.9rem;">ID Perangkat: SESS-LOCAL-2026</p>
+                </div>
+            </section>
+
         </div>
     </div>
 
     <nav class="bottom-nav" id="main-bottom-nav" style="display: none;">
-        <div class="nav-item active" onclick="switchPage('home')"><span class="nav-icon">🏠</span><span class="nav-label">Home</span></div>
-        <div class="nav-item" onclick="switchPage('promo')"><span class="nav-icon">🎁</span><span class="nav-label">Promo</span></div>
-        <div class="nav-item" onclick="switchPage('topup')"><span class="nav-icon">⚡</span><span class="nav-label">
+        <div class="nav-item active" onclick="switchPage('home')">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </div>
+        <div class="nav-item" onclick="switchPage('promo')">
+            <span class="nav-icon">🎁</span>
+            <span class="nav-label">Promo</span>
+        </div>
+        <div class="nav-item" onclick="switchPage('topup')">
+            <span class="nav-icon">⚡</span>
+            <span class="nav-label">Top Up</span>
+        </div>
+        <div class="nav-item" onclick="switchPage('history')">
+            <span class="nav-icon">⏳</span>
+            <span class="nav-label">History</span>
+        </div>
+        <div class="nav-item" onclick="switchPage('account')">
+            <span class="nav-icon">👤</span>
+            <span class="nav-label">Account</span>
+        </div>
+    </nav>
+
+    <div id="img-lightbox-modal" class="img-lightbox" onclick="closeImgLightbox()">
+        <span class="lightbox-close" style="position: absolute; top: 20px; right: 30px; color: #fff;">&times;</span>
+        <img id="img-lightbox-el" src="" alt="Visual Full Screen">
+    </div>
+
+    <div id="lightbox-modal" class="lightbox" onclick="closeLightbox()">
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+            <img id="lightbox-img" src="" alt="Visual Detail">
+            <div class="lightbox-title" id="lightbox-title"></div>
+            <div class="lightbox-desc" id="lightbox-desc"></div>
+            <div class="lightbox-price" id="lightbox-price" style="text-align: center;"></div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; <span id="year-copyright"></span> <span id="footer-store-name"></span>. Tepercaya & Terlindungi.
+    </footer>
+
+    <script>
+        // ==========================================
+        // PENGATURAN SCRIPT
+        // ==========================================
+        const SCRIPT_CONFIG = {
+            storeName: 'HYRA STORE',
+            
+            // LOGO URL: Pertahankan link logo kustom Anda di bawah ini
+            logoUrl: 'https://images.bukaolshop.com/hosting/54490/e8e001aed98f580944.png', 
+
+            marqueeText: '✨ SELAMAT DATANG DI HYRA STORE! Promo Spesial Diskon Layanan Digital Minggu Ini! Transaksi Cepat & Aman. ✨',
+            banners: [
+                'https://images.unsplash.com/photo-1614064641913-6b71a4034608?auto=format&fit=crop&w=1200&h=400&q=80',
+                'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1200&h=400&q=80'
+            ],
+            slideIntervalMs: 4000 
+        };
+
+        // ==========================================
+        // INISIALISASI & LOGIKA DASAR
+        // ==========================================
+        document.getElementById('header-store-name').textContent = SCRIPT_CONFIG.storeName;
+        document.getElementById('footer-store-name').textContent = SCRIPT_CONFIG.storeName;
+        document.getElementById('year-copyright').textContent = new Date().getFullYear();
+        document.getElementById('marquee-el').textContent = SCRIPT_CONFIG.marqueeText; 
+        document.getElementById('promo-description-text').textContent = SCRIPT_CONFIG.marqueeText;
+        
+        // Memuat Logo murni berdasarkan konfigurasi script Anda tanpa perubahan paksa
+        const logoImg = document.getElementById('header-logo');
+        if (SCRIPT_CONFIG.logoUrl && SCRIPT_CONFIG.logoUrl.trim() !== "") {
+            logoImg.src = SCRIPT_CONFIG.logoUrl;
+            logoImg.style.display = 'block';
+        } else {
+            logoImg.style.display = 'none';
+        }
+
+        const bannerTrack = document.getElementById('banner-track');
+        SCRIPT_CONFIG.banners.forEach(url => {
+            const img = document.createElement('img');
+            img.src = url;
+            bannerTrack.appendChild(img);
+        });
+
+        let currentSlide = 0;
+        setInterval(() => {
+            if (SCRIPT_CONFIG.banners.length <= 1) return;
+            currentSlide = (currentSlide + 1) % SCRIPT_CONFIG.banners.length;
+            bannerTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }, SCRIPT_CONFIG.slideIntervalMs);
+
+        // State Aplikasi
+        let products = JSON.parse(localStorage.getItem('savedProducts')) || [];
+        let currentImageBase64 = "";
+        let editProductId = null;
+
+        // ==========================================
+        // MANAGEMENT ROUTING INTERN (5 NAVIGASI SPA)
+        // ==========================================
+        function switchPage(pageId) {
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => item.classList.remove('active'));
+
+            const pages = document.querySelectorAll('.nav-page');
+            pages.forEach(page => page.style.display = 'none');
+
+            const targetPage = document.getElementById(`page-${pageId}`);
+            if(targetPage) targetPage.style.display = 'block';
+
+            const indices = { 'home': 0, 'promo': 1, 'topup': 2, 'history': 3, 'account': 4 };
+            if(navItems[indices[pageId]]) navItems[indices[pageId]].classList.add('active');
+
+            if(pageId === 'home') {
+                renderProducts(); 
+            }
+        }
+
+        // ==========================================
+        // FITUR TOGGLE (THEME & VIEW MODE)
+        // ==========================================
+        const themeBtn = document.getElementById('theme-toggle');
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeBtn.textContent = '☀️';
+        }
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                themeBtn.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeBtn.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        const viewBtn = document.getElementById('view-toggle');
+        const adminView = document.getElementById('admin-view');
+        const previewView = document.getElementById('preview-view');
+        const bottomNav = document.getElementById('main-bottom-nav');
+        
+        viewBtn.addEventListener('click', () => {
+            if (adminView.classList.contains('active')) {
+                adminView.classList.remove('active');
+                previewView.classList.add('active');
+                bottomNav.style.display = 'flex'; 
+                viewBtn.innerHTML = '🛒'; 
+                switchPage('home'); 
+            } else {
+                previewView.classList.remove('active');
+                adminView.classList.add('active');
+                bottomNav.style.display = 'none'; 
+                viewBtn.innerHTML = '⚙️'; 
+                renderAdminTable(); 
+            }
+        });
+
+        // ==========================================
+        // FITUR OPERASIONAL DATABASE (ADMIN PANEL)
+        // ==========================================
+        const imageInput = document.getElementById('input-image');
+        const imgPreviewEl = document.getElementById('img-preview-el');
+        const imgPlaceholder = document.getElementById('img-placeholder');
+        const productForm = document.getElementById('product-form');
+        const btnSubmitForm = document.getElementById('btn-submit-form');
+        const adminTitle = document.getElementById('admin-title');
+
+        imageInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    currentImageBase64 = event.target.result;
+                    imgPreviewEl.src = currentImageBase64;
+                    imgPreviewEl.style.display = 'block';
+                    imgPlaceholder.style.display = 'none';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        productForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('input-name').value;
+            const desc = document.getElementById('input-desc').value;
+            const price = document.getElementById('input-price').value;
+
+            if (editProductId) {
+                const index = products.findIndex(p => p.id === editProductId);
+                if (index !== -1) {
+                    products[index].name = name;
+                    products[index].desc = desc;
+                    products[index].price = price;
+                    if (currentImageBase64) {
+                        products[index].image = currentImageBase64;
+                    }
+                }
+                editProductId = null;
+                btnSubmitForm.textContent = 'Simpan ke Katalog';
+                adminTitle.textContent = 'Input Layanan Baru';
+                imageInput.setAttribute('required', 'true');
+            } else {
+                if (!currentImageBase64) {
+                    alert("Harap masukkan/tunggu foto visual produk selesai diunggah!");
+                    return;
+                }
+                const newProduct = { id: Date.now(), name, desc, price, image: currentImageBase64 };
+                products.push(newProduct);
+            }
+            
+            try {
+                localStorage.setItem('savedProducts', JSON.stringify(products));
+                alert('Data katalog berhasil diperbarui!');
+                this.reset();
+                imgPreviewEl.style.display = 'none';
+                imgPlaceholder.style.display = 'block';
+                currentImageBase64 = "";
+                renderAdminTable(); 
+                renderProducts(); 
+            } catch (err) {
+                alert('Gagal menyimpan! Kapasitas Local Storage penuh (Batas ~5MB). Perkecil ukuran foto Anda.');
+                if (!editProductId) products.pop(); 
+            }
+        });
+
+        function editProduct(id) {
+            const product = products.find(p => p.id === id);
+            if (!product) return;
+
+            document.getElementById('input-name').value = product.name;
+            document.getElementById('input-desc').value = product.desc;
+            document.getElementById('input-price').value = product.price;
+            
+            imgPreviewEl.src = product.image;
+            imgPreviewEl.style.display = 'block';
+            imgPlaceholder.style.display = 'none';
+
+            editProductId = id;
+            btnSubmitForm.textContent = 'Update Data Produk';
+            adminTitle.textContent = '🛠️ Edit Data Layanan';
+            imageInput.removeAttribute('required');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function deleteProduct(id) {
+            if (confirm('Apakah Anda yakin ingin menghapus layanan ini dari katalog?')) {
+                products = products.filter(p => p.id !== id);
+                localStorage.setItem('savedProducts', JSON.stringify(products));
+                renderAdminTable();
+                renderProducts();
+            }
+        }
+
+        const adminTableBody = document.getElementById('admin-table-body');
+        function renderAdminTable() {
+            adminTableBody.innerHTML = '';
+            
+            if (products.length === 0) {
+                adminTableBody.innerHTML = `<tr><td colspan="4" style="text-align: center; opacity: 0.5; padding: 20px;">Belum ada data layanan di database lokal.</td></tr>`;
+                return;
+            }
+
+            products.forEach(product => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><img src="${product.image}" alt="Visual"></td>
+                    <td style="font-weight: 600;">${product.name}</td>
+                    <td>${formatRupiah(product.price)}</td>
+                    <td style="text-align: center; white-space: nowrap;">
+                        <button class="btn-edit" onclick="editProduct(${product.id})">Edit</button>
+                        <button class="btn-delete" onclick="deleteProduct(${product.id})">Hapus</button>
+                    </td>
+                `;
+                adminTableBody.appendChild(tr);
+            });
+        }
+
+        // ==========================================
+        // FITUR PREVIEW, SEARCH & INTERACTIVE LIGHTBOX
+        // ==========================================
+        const productGrid = document.getElementById('product-grid');
+        const searchBar = document.getElementById('search-bar');
+
+        function formatRupiah(angka) {
+            return new Intl.NumberFormat('id-ID', { 
+                style: 'currency', 
+                currency: 'IDR', 
+                minimumFractionDigits: 2, 
+                maximumFractionDigits: 2 
+            }).format(angka);
+        }
+
+        function getDynamicFontSize(textLength) {
+            if (textLength >= 20) return '0.45rem'; 
+            if (textLength >= 16) return '0.55rem'; 
+            if (textLength >= 14) return '0.62rem'; 
+            return '0.7rem'; 
+        }
+
+        function openImgLightbox(src) {
+            const modal = document.getElementById('img-lightbox-modal');
+            document.getElementById('img-lightbox-el').src = src;
+            modal.style.display = 'flex';
+        }
+        function closeImgLightbox() {
+            document.getElementById('img-lightbox-modal').style.display = 'none';
+        }
+
+        function openDetailLightbox(product) {
+            const modal = document.getElementById('lightbox-modal');
+            document.getElementById('lightbox-img').src = product.image;
+            document.getElementById('lightbox-title').textContent = product.name;
+            document.getElementById('lightbox-desc').textContent = product.desc;
+            document.getElementById('lightbox-price').textContent = formatRupiah(product.price);
+            modal.style.display = 'flex';
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox-modal').style.display = 'none';
+        }
+
+        function renderProducts(searchQuery = '') {
+            productGrid.innerHTML = '';
+            
+            const filteredProducts = products.filter(p => 
+                p.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                p.desc.toLowerCase().includes(searchQuery.toLowerCase())
+            );
+
+            if (filteredProducts.length === 0) {
+                productGrid.innerHTML = `<div style="grid-column: 1/-1; text-align:center; padding: 40px; border-radius: 20px; background: var(--card-bg); border: 1px dashed var(--border-color);"><h3 style="opacity:0.5;">Belum ada layanan yang ditambahkan.</h3></div>`;
+                return;
+            }
+
+            filteredProducts.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                
+                const formattedPrice = formatRupiah(product.price);
+                const dynamicFontSize = getDynamicFontSize(formattedPrice.length);
+
+                card.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <div class="product-info">
+                        <div class="product-title">${product.name}</div>
+                        <div class="product-price" style="font-size: ${dynamicFontSize};">${formattedPrice}</div>
+                        <button class="action-btn">Lihat</button>
+                    </div>
+                `;
+                
+                card.querySelector('img').addEventListener('click', () => {
+                    openImgLightbox(product.image);
+                });
+
+                card.querySelector('.action-btn').addEventListener('click', () => {
+                    openDetailLightbox(product);
+                });
+
+                productGrid.appendChild(card);
+            });
+        }
+
+        searchBar.addEventListener('input', (e) => {
+            renderProducts(e.target.value);
+        });
+
+        // Render Data Awal
+        renderAdminTable();
+        renderProducts();
+    </script>
+</body>
+</html>
