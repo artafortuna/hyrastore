@@ -61,9 +61,24 @@
         }
         
         .logo { display: flex; align-items: center; gap: 15px; }
-        .logo img { max-height: 100px; object-fit: contain; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); transition: all 0.3s ease; }
+        .logo img { max-height: 80px; object-fit: contain; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); transition: all 0.3s ease; }
         .logo img:hover { transform: scale(1.05); }
-        .store-name { font-size: 2rem; font-weight: 800; letter-spacing: 0.5px; background: linear-gradient(45deg, var(--primary-color), #ffc2d1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        /* --- PENAMBAHAN UNTUK SUB-JUDUL --- */
+        .store-text-wrapper { display: flex; flex-direction: column; justify-content: center; }
+        .store-name { 
+            font-size: 2rem; 
+            font-weight: 800; 
+            letter-spacing: 0.5px; 
+            background: linear-gradient(45deg, var(--primary-color), #ffc2d1); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            line-height: 1.1; 
+            /* Efek glow dimatikan */
+        }
+        
+        .store-subtitle { font-size: 0.85rem; font-weight: 600; opacity: 0.7; letter-spacing: 0.5px; margin-top: 2px; }
+        /* ---------------------------------- */
 
         .nav-controls { display: flex; gap: 12px; }
         button { 
@@ -199,7 +214,7 @@
         
         .product-price { 
             font-weight: 800; color: var(--primary-color); 
-            text-shadow: 0 2px 10px var(--glow-color); margin-bottom: 6px; 
+            text-shadow: 0 1px 2px rgba(0,0,0,0.15), 0 2px 10px var(--glow-color); margin-bottom: 6px; 
             text-align: center; 
             white-space: nowrap; 
             width: 100%;
@@ -233,7 +248,7 @@
         .nav-item .nav-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; }
         
         .nav-item.active { opacity: 1; color: var(--primary-color); }
-        .nav-item.active .nav-icon { transform: scale(1.15) translateY(-2px); text-shadow: 0 0 10px var(--glow-color); }
+        .nav-item.active .nav-icon { transform: scale(1.15) translateY(-2px); text-shadow: 0 1px 2px rgba(0,0,0,0.15), 0 0 10px var(--glow-color); }
 
         /* === Lightbox Modals === */
         .img-lightbox {
@@ -258,7 +273,8 @@
         .lightbox-content img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 16px; margin-bottom: 15px; border: 1px solid var(--border-color); }
         .lightbox-title { font-size: 1.4rem; font-weight: 800; margin-bottom: 8px; color: var(--text-color); }
         .lightbox-desc { font-size: 0.95rem; opacity: 0.8; margin-bottom: 20px; line-height: 1.5; color: var(--text-color); max-height: 120px; overflow-y: auto; padding-right: 5px; }
-        .lightbox-price { font-size: 1.5rem; font-weight: 800; color: var(--primary-color); text-shadow: 0 2px 10px var(--glow-color); white-space: nowrap; }
+        
+        .lightbox-price { font-size: 1.5rem; font-weight: 800; color: var(--primary-color); text-shadow: 0 1px 2px rgba(0,0,0,0.15), 0 2px 10px var(--glow-color); white-space: nowrap; }
         
         .lightbox-close { position: absolute; top: 12px; right: 20px; color: var(--text-color); font-size: 32px; font-weight: bold; cursor: pointer; opacity: 0.6; transition: 0.2s; }
         .lightbox-close:hover { opacity: 1; color: var(--primary-color); }
@@ -282,7 +298,10 @@
     <header>
         <div class="logo">
             <img id="header-logo" src="" alt="Logo">
-            <span id="header-store-name" class="store-name"></span>
+            <div class="store-text-wrapper">
+                <span id="header-store-name" class="store-name"></span>
+                <span id="header-store-subtitle" class="store-subtitle"></span>
+            </div>
         </div>
         <div class="nav-controls">
             <button id="theme-toggle" class="icon-btn" title="Ganti Tema">🌙</button>
@@ -440,13 +459,16 @@
         const SCRIPT_CONFIG = {
             storeName: 'HYRA STORE',
             
+            // --- TAMBAHAN PENGATURAN SUB-JUDUL ---
+            storeSubtitle: 'Toko Online Favoritku', 
+            
             // LOGO URL: Pertahankan link logo kustom Anda di bawah ini
             logoUrl: 'https://github.com/artafortuna/website1/blob/main/HYRA%20STORE%20LOGO.png?raw=true', 
 
             marqueeText: '✨ SELAMAT DATANG DI HYRA STORE! Promo Spesial Diskon Produk Digital Minggu Ini! Transaksi Cepat & Aman. ✨',
             banners: [
-                'https://images.unsplash.com/photo-1614064641913-6b71a4034608?auto=format&fit=crop&w=1200&h=400&q=80',
-                'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1200&h=400&q=80'
+                'https://github.com/artafortuna/website1/blob/main/HYRA%20slide%201.png?raw=true',
+                'https://github.com/artafortuna/website1/blob/main/HYRA%20Slide%202.png?raw=true'
             ],
             slideIntervalMs: 4000 
         };
@@ -455,6 +477,9 @@
         // INISIALISASI & LOGIKA DASAR
         // ==========================================
         document.getElementById('header-store-name').textContent = SCRIPT_CONFIG.storeName;
+        // Memasukkan teks sub-judul dari pengaturan
+        document.getElementById('header-store-subtitle').textContent = SCRIPT_CONFIG.storeSubtitle;
+        
         document.getElementById('footer-store-name').textContent = SCRIPT_CONFIG.storeName;
         document.getElementById('year-copyright').textContent = new Date().getFullYear();
         document.getElementById('marquee-el').textContent = SCRIPT_CONFIG.marqueeText; 
@@ -668,7 +693,7 @@
             products.forEach(product => {
                 const tr = document.createElement('tr');
                 const soldBtnText = product.isSoldOut ? 'Tersedia' : 'Sold Out';
-                const soldBtnColor = product.isSoldOut ? 'var(--success-color)' : '#e63956'; /* Update ke pink merah */
+                const soldBtnColor = product.isSoldOut ? 'var(--success-color)' : '#e63956'; 
                 tr.innerHTML = `
                     <td>
                         <div style="position: relative; display: inline-block;">
@@ -678,10 +703,12 @@
                     </td>
                     <td style="font-weight: 600;">${product.name}</td>
                     <td>${formatRupiah(product.price)}</td>
-                    <td style="text-align: center; white-space: nowrap;">
-                        <button class="btn-edit" onclick="editProduct(${product.id})">Edit</button>
-                        <button class="btn-sold" onclick="toggleSoldOut(${product.id})" style="background-color: ${soldBtnColor}; padding: 6px 12px; font-size: 0.85rem; border-radius: 8px; margin-right: 5px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); color: white; font-weight: 700;">${soldBtnText}</button>
-                        <button class="btn-delete" onclick="deleteProduct(${product.id})">Hapus</button>
+                    <td style="text-align: center;">
+                        <div style="display: flex; flex-direction: column; gap: 6px; align-items: center; justify-content: center;">
+                            <button class="btn-edit" onclick="editProduct(${product.id})" style="margin: 0; width: 85px;">Edit</button>
+                            <button class="btn-sold" onclick="toggleSoldOut(${product.id})" style="background-color: ${soldBtnColor}; padding: 6px 12px; font-size: 0.85rem; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); color: white; font-weight: 700; margin: 0; width: 85px;">${soldBtnText}</button>
+                            <button class="btn-delete" onclick="deleteProduct(${product.id})" style="margin: 0; width: 85px;">Hapus</button>
+                        </div>
                     </td>
                 `;
                 adminTableBody.appendChild(tr);
