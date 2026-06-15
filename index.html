@@ -7,37 +7,37 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
     <style>
-        /* === Variabel Tema Futuristik & Modern === */
+        /* === Variabel Tema Kartun Lucu Pink === */
         :root {
             /* Light Mode */
-            --bg-color: #f0f4f8; 
-            --text-color: #0f172a;
-            --header-bg: rgba(255, 255, 255, 0.75);
-            --card-bg: rgba(255, 255, 255, 0.85);
-            --border-color: rgba(15, 23, 42, 0.08);
-            --primary-color: #2563eb; 
-            --primary-hover: #1d4ed8;
-            --glow-color: rgba(37, 99, 235, 0.25);
-            --card-shadow: 0 10px 30px -10px rgba(0,0,0,0.08);
-            --danger-color: #dc2626;
-            --danger-hover: #b91c1c;
-            --success-color: #16a34a;
+            --bg-color: #fff0f5; 
+            --text-color: #6b3e55;
+            --header-bg: rgba(255, 240, 245, 0.85);
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --border-color: #ffcce0;
+            --primary-color: #ff6b9e; 
+            --primary-hover: #f04e87;
+            --glow-color: rgba(255, 107, 158, 0.35);
+            --card-shadow: 0 10px 30px -10px rgba(255, 107, 158, 0.2);
+            --danger-color: #ff4d6d;
+            --danger-hover: #e63956;
+            --success-color: #4ade80;
         }
 
         .dark-mode {
             /* Dark Mode */
-            --bg-color: #09090e; 
-            --text-color: #f8fafc;
-            --header-bg: rgba(9, 9, 14, 0.8);
-            --card-bg: rgba(20, 20, 28, 0.6);
-            --border-color: rgba(255, 255, 255, 0.1);
-            --primary-color: #00f0ff; 
-            --primary-hover: #00c3cc;
-            --glow-color: rgba(0, 240, 255, 0.35);
-            --card-shadow: 0 10px 30px -10px rgba(0, 240, 255, 0.1);
-            --danger-color: #ff4a4a;
-            --danger-hover: #e03333;
-            --success-color: #00ff66;
+            --bg-color: #2e1522; 
+            --text-color: #ffe8f0;
+            --header-bg: rgba(46, 21, 34, 0.85);
+            --card-bg: rgba(71, 31, 51, 0.7);
+            --border-color: rgba(255, 153, 194, 0.2);
+            --primary-color: #ff99cc; 
+            --primary-hover: #ffb3d9;
+            --glow-color: rgba(255, 153, 204, 0.35);
+            --card-shadow: 0 10px 30px -10px rgba(255, 153, 204, 0.15);
+            --danger-color: #ff6680;
+            --danger-hover: #ff4d6d;
+            --success-color: #66ff99;
         }
 
         /* === Reset & Base === */
@@ -54,16 +54,16 @@
         /* === Header & Navigasi === */
         header { 
             display: flex; justify-content: space-between; align-items: center; 
-            padding: 15px 5%; background-color: var(--header-bg); 
+            padding: 5px 5%; background-color: var(--header-bg); 
             border-bottom: 1px solid var(--border-color); 
             position: sticky; top: 0; z-index: 100; 
             backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
         }
         
         .logo { display: flex; align-items: center; gap: 15px; }
-        .logo img { max-height: 50px; object-fit: contain; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); transition: all 0.3s ease; }
+        .logo img { max-height: 100px; object-fit: contain; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); transition: all 0.3s ease; }
         .logo img:hover { transform: scale(1.05); }
-        .store-name { font-size: 1.5rem; font-weight: 800; letter-spacing: 0.5px; background: linear-gradient(45deg, var(--primary-color), #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .store-name { font-size: 2rem; font-weight: 800; letter-spacing: 0.5px; background: linear-gradient(45deg, var(--primary-color), #ffc2d1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
         .nav-controls { display: flex; gap: 12px; }
         button { 
@@ -105,7 +105,7 @@
         }
 
         /* === Banner Slide 3:1 === */
-        .banner-wrapper { width: 100%; aspect-ratio: 3 / 1; overflow: hidden; position: relative; background: #000; border-bottom: 1px solid var(--border-color); }
+        .banner-wrapper { width: 100%; aspect-ratio: 2 / 1; overflow: hidden; position: relative; background: #000; border-bottom: 1px solid var(--border-color); }
         .banner-track { display: flex; width: 100%; height: 100%; transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
         .banner-track img { width: 100%; height: 100%; object-fit: cover; flex-shrink: 0; filter: brightness(0.9); }
 
@@ -147,7 +147,7 @@
         .image-preview:hover { border-color: var(--primary-color); }
         .image-preview img { width: 100%; height: 100%; object-fit: cover; display: none; }
 
-        /* Daftar Management Layanan di Admin */
+        /* Daftar Management Produk di Admin */
         .admin-product-list { max-width: 800px; margin: 40px auto 0; }
         .admin-table-wrapper { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 20px; overflow: hidden; box-shadow: var(--card-shadow); }
         .admin-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.95rem; }
@@ -302,7 +302,7 @@
     <div class="container">
         
         <main id="admin-view" class="view-section active">
-            <h2 id="admin-title" style="text-align: center; margin-bottom: 30px; font-weight: 800; font-size: 2rem;">Input Layanan Baru</h2>
+            <h2 id="admin-title" style="text-align: center; margin-bottom: 30px; font-weight: 800; font-size: 2rem;">Input Produk Baru</h2>
             <div class="admin-form">
                 <form id="product-form">
                     <div class="form-group">
@@ -311,14 +311,14 @@
                     </div>
                     <div class="form-group">
                         <label>Deskripsi Produk</label>
-                        <textarea id="input-desc" required placeholder="Ketik detail dan keunggulan layanan di sini..."></textarea>
+                        <textarea id="input-desc" required placeholder="Ketik detail dan keunggulan produk di sini..."></textarea>
                     </div>
                     <div class="form-group">
-                        <label>Harga Layanan (Rp)</label>
+                        <label>Harga Produk (Rp)</label>
                         <input type="number" id="input-price" required placeholder="Contoh: 50000">
                     </div>
                     <div class="form-group">
-                        <label>Foto Visual (Lokal)</label>
+                        <label>Foto (Lokal)</label>
                         <input type="file" id="input-image" accept="image/*" style="padding: 10px; border: none; background: transparent;">
                         <div class="image-preview" id="img-preview-container">
                             <span id="img-placeholder" style="opacity:0.5; font-weight:600;">Pilih Gambar untuk Preview</span>
@@ -335,9 +335,9 @@
                     <table class="admin-table">
                         <thead>
                             <tr>
-                                <th>Visual</th>
-                                <th>Nama Layanan</th>
-                                <th>Harga (Gross)</th>
+                                <th>Foto</th>
+                                <th>Nama Produk</th>
+                                <th>Harga</th>
                                 <th style="text-align: center;">Aksi</th>
                             </tr>
                         </thead>
@@ -351,7 +351,7 @@
         <div id="preview-view" class="view-section">
             
             <section id="page-home" class="nav-page">
-                <input type="text" id="search-bar" class="search-bar" placeholder="🔍 Cari nama layanan...">
+                <input type="text" id="search-bar" class="search-bar" placeholder="🔍 Cari nama produk...">
                 <div class="product-grid" id="product-grid">
                     </div>
             </section>
@@ -360,7 +360,7 @@
                 <div class="page-card">
                     <h2 style="margin-bottom: 15px; font-weight: 800;">🎁 Pusat Promo & Diskon</h2>
                     <p style="opacity: 0.8; margin-bottom: 20px;" id="promo-description-text"></p>
-                    <div style="padding: 15px; background: rgba(0,240,255,0.05); border: 1px dashed var(--primary-color); border-radius: 12px; font-weight: 700;">
+                    <div style="padding: 15px; background: rgba(255,102,163,0.05); border: 1px dashed var(--primary-color); border-radius: 12px; font-weight: 700;">
                         Gunakan Kode: <span style="color: var(--primary-color);">HYRANEW2026</span>
                     </div>
                 </div>
@@ -369,7 +369,7 @@
             <section id="page-topup" class="nav-page" style="display: none;">
                 <div class="page-card">
                     <h2 style="margin-bottom: 15px; font-weight: 800;">⚡ Sistem Instant Top Up</h2>
-                    <p style="opacity: 0.8; line-height: 1.6;">Silakan pilih produk pada menu beranda, klik tombol <b>Lihat</b> untuk membaca detail spesifikasi layanan, lalu lakukan checkout pesanan Anda.</p>
+                    <p style="opacity: 0.8; line-height: 1.6;">Silakan pilih produk pada menu beranda, klik tombol <b>Lihat</b> untuk membaca detail spesifikasi produk, lalu lakukan checkout pesanan Anda.</p>
                 </div>
             </section>
 
@@ -430,7 +430,7 @@
     </div>
 
     <footer>
-        &copy; <span id="year-copyright"></span> <span id="footer-store-name"></span>. Tepercaya & Terlindungi.
+        &copy; <span id="year-copyright"></span> <span id="footer-store-name"></span>. Hak Cipta Dilindungi.
     </footer>
 
     <script>
@@ -441,9 +441,9 @@
             storeName: 'HYRA STORE',
             
             // LOGO URL: Pertahankan link logo kustom Anda di bawah ini
-            logoUrl: 'https://images.bukaolshop.com/hosting/54490/e8e001aed98f580944.png', 
+            logoUrl: 'https://github.com/artafortuna/website1/blob/main/HYRA%20STORE%20LOGO.png?raw=true', 
 
-            marqueeText: '✨ SELAMAT DATANG DI HYRA STORE! Promo Spesial Diskon Layanan Digital Minggu Ini! Transaksi Cepat & Aman. ✨',
+            marqueeText: '✨ SELAMAT DATANG DI HYRA STORE! Promo Spesial Diskon Produk Digital Minggu Ini! Transaksi Cepat & Aman. ✨',
             banners: [
                 'https://images.unsplash.com/photo-1614064641913-6b71a4034608?auto=format&fit=crop&w=1200&h=400&q=80',
                 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1200&h=400&q=80'
@@ -591,14 +591,14 @@
                 }
                 editProductId = null;
                 btnSubmitForm.textContent = 'Simpan ke Katalog';
-                adminTitle.textContent = 'Input Layanan Baru';
+                adminTitle.textContent = 'Input Produk Baru';
                 imageInput.setAttribute('required', 'true');
             } else {
                 if (!currentImageBase64) {
                     alert("Harap masukkan/tunggu foto visual produk selesai diunggah!");
                     return;
                 }
-                const newProduct = { id: Date.now(), name, desc, price, image: currentImageBase64 };
+                const newProduct = { id: Date.now(), name, desc, price, image: currentImageBase64, isSoldOut: false };
                 products.push(newProduct);
             }
             
@@ -631,15 +631,25 @@
 
             editProductId = id;
             btnSubmitForm.textContent = 'Update Data Produk';
-            adminTitle.textContent = '🛠️ Edit Data Layanan';
+            adminTitle.textContent = '🛠️ Edit Data Produk';
             imageInput.removeAttribute('required');
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function deleteProduct(id) {
-            if (confirm('Apakah Anda yakin ingin menghapus layanan ini dari katalog?')) {
+            if (confirm('Apakah Anda yakin ingin menghapus produk ini dari katalog?')) {
                 products = products.filter(p => p.id !== id);
+                localStorage.setItem('savedProducts', JSON.stringify(products));
+                renderAdminTable();
+                renderProducts();
+            }
+        }
+
+        function toggleSoldOut(id) {
+            const index = products.findIndex(p => p.id === id);
+            if (index !== -1) {
+                products[index].isSoldOut = !products[index].isSoldOut;
                 localStorage.setItem('savedProducts', JSON.stringify(products));
                 renderAdminTable();
                 renderProducts();
@@ -651,18 +661,26 @@
             adminTableBody.innerHTML = '';
             
             if (products.length === 0) {
-                adminTableBody.innerHTML = `<tr><td colspan="4" style="text-align: center; opacity: 0.5; padding: 20px;">Belum ada data layanan di database lokal.</td></tr>`;
+                adminTableBody.innerHTML = `<tr><td colspan="4" style="text-align: center; opacity: 0.5; padding: 20px;">Belum ada data produk di database lokal.</td></tr>`;
                 return;
             }
 
             products.forEach(product => {
                 const tr = document.createElement('tr');
+                const soldBtnText = product.isSoldOut ? 'Tersedia' : 'Sold Out';
+                const soldBtnColor = product.isSoldOut ? 'var(--success-color)' : '#e63956'; /* Update ke pink merah */
                 tr.innerHTML = `
-                    <td><img src="${product.image}" alt="Visual"></td>
+                    <td>
+                        <div style="position: relative; display: inline-block;">
+                            <img src="${product.image}" alt="Visual">
+                            ${product.isSoldOut ? `<div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(230, 57, 86, 0.6); color: white; font-size: 9px; font-weight: 800; display: flex; align-items: center; justify-content: center; border-radius: 8px;">SOLD</div>` : ''}
+                        </div>
+                    </td>
                     <td style="font-weight: 600;">${product.name}</td>
                     <td>${formatRupiah(product.price)}</td>
                     <td style="text-align: center; white-space: nowrap;">
                         <button class="btn-edit" onclick="editProduct(${product.id})">Edit</button>
+                        <button class="btn-sold" onclick="toggleSoldOut(${product.id})" style="background-color: ${soldBtnColor}; padding: 6px 12px; font-size: 0.85rem; border-radius: 8px; margin-right: 5px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); color: white; font-weight: 700;">${soldBtnText}</button>
                         <button class="btn-delete" onclick="deleteProduct(${product.id})">Hapus</button>
                     </td>
                 `;
@@ -722,23 +740,25 @@
             );
 
             if (filteredProducts.length === 0) {
-                productGrid.innerHTML = `<div style="grid-column: 1/-1; text-align:center; padding: 40px; border-radius: 20px; background: var(--card-bg); border: 1px dashed var(--border-color);"><h3 style="opacity:0.5;">Belum ada layanan yang ditambahkan.</h3></div>`;
+                productGrid.innerHTML = `<div style="grid-column: 1/-1; text-align:center; padding: 40px; border-radius: 20px; background: var(--card-bg); border: 1px dashed var(--border-color);"><h3 style="opacity:0.5;">Belum ada produk yang ditambahkan.</h3></div>`;
                 return;
             }
 
             filteredProducts.forEach(product => {
                 const card = document.createElement('div');
                 card.className = 'product-card';
+                card.style.position = 'relative';
                 
                 const formattedPrice = formatRupiah(product.price);
                 const dynamicFontSize = getDynamicFontSize(formattedPrice.length);
 
                 card.innerHTML = `
-                    <img src="${product.image}" alt="${product.name}">
+                    ${product.isSoldOut ? `<div style="position: absolute; top: 30%; left: 50%; transform: translate(-50%, -50%) rotate(-15deg); background: rgba(230, 57, 86, 0.95); color: white; padding: 6px 16px; font-weight: 800; font-size: 1.2rem; border: 3px double white; border-radius: 4px; pointer-events: none; text-transform: uppercase; letter-spacing: 1.5px; z-index: 5; box-shadow: 0 4px 15px rgba(230,57,86,0.4);">SOLD OUT</div>` : ''}
+                    <img src="${product.image}" alt="${product.name}" ${product.isSoldOut ? 'style="filter: brightness(0.6) grayscale(0.3);"' : ''}>
                     <div class="product-info">
                         <div class="product-title">${product.name}</div>
                         <div class="product-price" style="font-size: ${dynamicFontSize};">${formattedPrice}</div>
-                        <button class="action-btn">Lihat</button>
+                        <button class="action-btn" ${product.isSoldOut ? 'style="background-color: #9e7f8f; box-shadow: none;"' : ''}>${product.isSoldOut ? 'Sold Out' : 'Lihat'}</button>
                     </div>
                 `;
                 
